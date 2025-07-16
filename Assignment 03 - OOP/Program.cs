@@ -18,14 +18,81 @@ namespace Assignment_03___OOP
      */
     #endregion
 
-    #region Part 2
-    
+    #region Part 2 Q1)
+    interface IShape
+    {
+        double Area { get; }
+        void DisplayShapeInfo();
+    }
+
+    interface ICircle : IShape { }
+
+    interface IRectangle : IShape { }
+
+    class Circle : ICircle
+    {
+        public double Radius;
+
+        public Circle(double radius)
+        {
+            Radius = radius;
+        }
+
+        public double Area
+        {
+            get { return 3.14 * Radius * Radius; }
+        }
+
+        public void DisplayShapeInfo()
+        {
+            Console.WriteLine("Shape: Circle");
+            Console.WriteLine("Radius: " + Radius);
+            Console.WriteLine("Area: " + Area);
+        }
+    }
+
+    class Rectangle : IRectangle
+    {
+        public double Length;
+        public double Width;
+
+        public Rectangle(double length, double width)
+        {
+            Length = length;
+            Width = width;
+        }
+
+        public double Area
+        {
+            get { return Length * Width; }
+        }
+
+        public void DisplayShapeInfo()
+        {
+            Console.WriteLine("Shape: Rectangle");
+            Console.WriteLine("Length: " + Length);
+            Console.WriteLine("Width: " + Width);
+            Console.WriteLine("Area: " + Area);
+        }
+    }
+
+
     #endregion
     internal class Program
     {
         static void Main(string[] args)
         {
-            
+            #region Part 2 Q1)
+
+            Circle c = new Circle(5);
+            c.DisplayShapeInfo();
+
+            Console.WriteLine(); // blank line
+
+            Rectangle r = new Rectangle(4, 6);
+            r.DisplayShapeInfo();
+
+            #endregion
         }
     }
 }
