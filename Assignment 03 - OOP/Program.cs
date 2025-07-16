@@ -108,6 +108,34 @@ namespace Assignment_03___OOP
 
     #region Part 2 Q3)
 
+    interface INotificationService
+    {
+        void SendNotification(string user, string message);
+    }
+
+    class EmailNotificationService : INotificationService
+    {
+        public void SendNotification(string user, string message)
+        {
+            Console.WriteLine("Email to " + user + ": " + message);
+        }
+    }
+
+    class SmsNotificationService : INotificationService
+    {
+        public void SendNotification(string user, string message)
+        {
+            Console.WriteLine("SMS to " + user + ": " + message);
+        }
+    }
+
+    class PushNotificationService : INotificationService
+    {
+        public void SendNotification(string user, string message)
+        {
+            Console.WriteLine("Push Notification to " + user + ": " + message);
+        }
+    }
     #endregion
     internal class Program
     {
@@ -118,7 +146,7 @@ namespace Assignment_03___OOP
             Circle c = new Circle(5);
             c.DisplayShapeInfo();
 
-            Console.WriteLine(); // blank line
+            Console.WriteLine();
 
             Rectangle r = new Rectangle(4, 6);
             r.DisplayShapeInfo();
@@ -134,6 +162,18 @@ namespace Assignment_03___OOP
 
             bool isAuthorized = authService.AuthorizeUser("admin", "admin");
             Console.WriteLine("Authorized: " + isAuthorized);
+
+            #endregion
+
+            #region Part 2 Q3)
+
+            INotificationService emailService = new EmailNotificationService();
+            INotificationService smsService = new SmsNotificationService();
+            INotificationService pushService = new PushNotificationService();
+
+            emailService.SendNotification("Moamen@gmail.com", "Welcome!");
+            smsService.SendNotification("123456", "Your OTP is 21511560");
+            pushService.SendNotification("user1", "You have a new message");
 
             #endregion
         }
