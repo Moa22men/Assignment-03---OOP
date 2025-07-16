@@ -78,6 +78,37 @@ namespace Assignment_03___OOP
 
 
     #endregion
+
+    #region Part 2 Q2)
+
+    interface IAuthenticationService
+    {
+        bool AuthenticateUser(string username, string password);
+        bool AuthorizeUser(string username, string role);
+    }
+
+    class BasicAuthenticationService : IAuthenticationService
+    {
+        private string storedUsername = "admin";
+        private string storedPassword = "1234";
+        private string storedCredentials = "admin";
+
+        public bool AuthenticateUser(string username, string password)
+        {
+            return username == storedUsername && password == storedPassword;
+        }
+
+        public bool AuthorizeUser(string username, string role)
+        {
+            return username == storedUsername && role == storedCredentials;
+        }
+    }
+
+    #endregion
+
+    #region Part 2 Q3)
+
+    #endregion
     internal class Program
     {
         static void Main(string[] args)
@@ -91,6 +122,18 @@ namespace Assignment_03___OOP
 
             Rectangle r = new Rectangle(4, 6);
             r.DisplayShapeInfo();
+
+            #endregion
+
+            #region Part 2 Q2
+
+            IAuthenticationService authService = new BasicAuthenticationService();
+
+            bool isAuthenticated = authService.AuthenticateUser("admin", "1234");
+            Console.WriteLine("Authenticated: " + isAuthenticated);
+
+            bool isAuthorized = authService.AuthorizeUser("admin", "admin");
+            Console.WriteLine("Authorized: " + isAuthorized);
 
             #endregion
         }
